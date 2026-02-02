@@ -25,6 +25,10 @@
     },
     
     setOperator(op){
+        if(this.operator !== null && this.newNumber === false){
+            this.calculate();
+        }
+
         this.prevValue = parseFloat(this.display);
         this.operator = op;
         this.newNumber = true;
@@ -41,9 +45,14 @@
 
         this.display = String(result);
         this.newNumber = true;
+    },
+
+    clearAll(){
+        this.display = '0';
+        this.prevValue = null;
+        this.operator = null;
+        this.newNumber = true;
     }
-
-
     
     }" 
     class="bg-white p-6 rounded-xl shadow-xl w-72">
@@ -56,24 +65,24 @@
             <button @click="setNumber('8')" class=" bg-gray-200 p-2 rounded font-bold hover:bg-gray-300">8</button>
             <button @click="setNumber('9')" class=" bg-gray-200 p-2 rounded font-bold hover:bg-gray-300">9</button>
 
-            <button @click="setOperator('+')" class=" bg-amber-500 font-bold rounded-full mx-1.5 hover:bg-amber-600">+</button>
+            <button @click="setOperator('+')" class=" bg-amber-500 font-bold rounded mx-1.5 hover:bg-amber-600">+</button>
 
             <button @click="setNumber('4')" class=" bg-gray-200 p-2 rounded font-bold hover:bg-gray-300">4</button>
             <button @click="setNumber('5')" class=" bg-gray-200 p-2 rounded font-bold hover:bg-gray-300">5</button>
             <button @click="setNumber('6')" class=" bg-gray-200 p-2 rounded font-bold hover:bg-gray-300">6</button>
 
-            <button @click="setOperator('-')" class=" bg-amber-500 font-bold rounded-full mx-1.5 hover:bg-amber-600">-</button>
+            <button @click="setOperator('-')" class=" bg-amber-500 font-bold rounded mx-1.5 hover:bg-amber-600">-</button>
 
             <button @click="setNumber('1')" class=" bg-gray-200 p-2 rounded font-bold hover:bg-gray-300">1</button>
             <button @click="setNumber('2')" class=" bg-gray-200 p-2 rounded font-bold hover:bg-gray-300">2</button>
             <button @click="setNumber('3')" class=" bg-gray-200 p-2 rounded font-bold hover:bg-gray-300">3</button>
 
-            <button @click="setOperator('*')" class=" bg-amber-500 font-bold rounded-full mx-1.5 hover:bg-amber-600">x</button>
+            <button @click="setOperator('*')" class=" bg-amber-500 font-bold rounded mx-1.5 hover:bg-amber-600">x</button>
 
-            <button @click="display = '0'" class="bg-red-500 text-white p-4 rounded font-bold hover:bg-red-600">C</button>
+            <button @click="clearAll()" class="bg-red-500 text-white p-4 rounded font-bold hover:bg-red-600">C</button>
             <button @click="setNumber('0')" class="bg-gray-200 p-4 rounded font-bold hover:bg-gray-300">0</button>
             <button @click="calculate()" class=" bg-green-500 text-white p-4 rounded font-bold hover:bg-green-600">=</button>
-            <button @click="setOperator('/')" class=" bg-amber-500 font-bold rounded-full mx-1.5 hover:bg-amber-600">÷</button>
+            <button @click="setOperator('/')" class=" bg-amber-500 font-bold rounded mx-1.5 hover:bg-amber-600">÷</button>
         </div>
     </div>
 
