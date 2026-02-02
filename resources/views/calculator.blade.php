@@ -6,56 +6,13 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Calculator</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    {{-- <script src="{{ asset('../calculator-logic.js') }}"></script> --}}
+    {{-- <script src="../js/calculator-logic.js"></script> --}}
+    @vite(['resources/js/app.js'])
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div x-data="{
-    display:'0',
-    operator: null,
-    prevValue: null,
-    newNumber: true,
-
-    setNumber(number){
-        if(this.display === '0' || this.newNumber){
-            this.display = number;
-            this.newNumber = false;
-        }else{
-            this.display += number;  {{-- misal angka 3, kemudian angka selanjutnya 5 makan menjadi 35 (concatenation) --}}
-        }
-    },
-    
-    setOperator(op){
-        if(this.operator !== null && this.newNumber === false){
-            this.calculate();
-        }
-
-        this.prevValue = parseFloat(this.display);
-        this.operator = op;
-        this.newNumber = true;
-    },
-    
-    calculate(){
-        let current = parseFloat(this.display);
-        let result = 0;
-
-        if(this.operator === '+') result = this.prevValue + current;
-        if(this.operator === '-') result = this.prevValue - current;
-        if(this.operator === '*') result = this.prevValue * current;
-        if(this.operator === '/') result = this.prevValue / current;
-
-        this.display = String(result);
-        this.newNumber = true;
-    },
-
-    clearAll(){
-        this.display = '0';
-        this.prevValue = null;
-        this.operator = null;
-        this.newNumber = true;
-    }
-    
-    }" 
-    class="bg-white p-6 rounded-xl shadow-xl w-72">
+    <div x-data="calculatorData" class="bg-white p-6 rounded-xl shadow-xl w-72">
         <div class=" bg-black text-white text-right text-4xl rounded p-4 mb-4">
             <span x-text="display"></span>
         </div>
